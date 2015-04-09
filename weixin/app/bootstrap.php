@@ -180,14 +180,14 @@ $di->set('dispatcher', function () use ($di)
         $request = new Phalcon\Http\Request();
         $params  = $request->get();
         $getKeys = array();
-        preg_match('/\.[a-z0-9]+$/', $params["_url"], $suffix);
-        if($suffix)
-        {
-            $dispatcher->forward(array(
-                'controller' => 'error',
-                'action'     => 'nofound'
-            ));
-        }
+//        preg_match('/\.[a-z0-9]+$/', $params["_url"], $suffix);
+//        if($suffix)
+//        {
+//            $dispatcher->forward(array(
+//                'controller' => 'error',
+//                'action'     => 'nofound'
+//            ));
+//        }
         if($_GET)
         {
             foreach($_GET as $k => $v)

@@ -11,6 +11,9 @@ ini_set('session.gc_maxlifetime', 3600);
 define("DOCROOT", str_replace("public", "", str_replace('\\', '/', realpath(__DIR__))));
 define("ROOT", dirname(DOCROOT) . "/");
 define("APPROOT", DOCROOT . "app/");
+define("NO_NEED_LOGIN", true);
+define("NO_NEED_POWER", true);
+
 require APPROOT."config/global.config.php";
 require DOCROOT . '../config/config.inc.php';
 

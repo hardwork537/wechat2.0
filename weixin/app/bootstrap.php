@@ -46,7 +46,7 @@ $di->set('router', function ()
 $di->setShared('session', function ()
 {
     $session = new Phalcon\Session\Adapter\Files(array(
-        'uniqueId' => 'esf_admin_'
+        'uniqueId' => 'mike_weixin_'
     ));
     $session->start();
     return $session;
@@ -147,7 +147,7 @@ $di->set('dispatcher', function () use ($di)
     $eventsManager = $di->getEvents();
     $eventsManager->attach("dispatch:beforeException", function ($event, $dispatcher, $exception)
     {
-        Log::ErrorWrite('admin', '', $_SERVER['REQUEST_URI']."\t".$exception->getMessage(), 'debug.txt');
+        Log::ErrorWrite('weixin', '', $_SERVER['REQUEST_URI']."\t".$exception->getMessage(), 'debug.txt');
 
         //Handle 404 exceptions
         if($exception instanceof Phalcon\Mvc\Dispatcher\Exception)
@@ -317,14 +317,14 @@ $di->set('view', function ()
 
 try
 {
-    register_shutdown_function(array('Error','catchFatalError'),'admin');
+    register_shutdown_function(array('Error','catchFatalError'),'weixin');
     $StartTime   = microtime(true);
     $application = new \Phalcon\Mvc\Application();
     $application->setDI($di);
     echo $application->handle()->getContent();
     $EndTime = microtime(true);
     $UseTime = $EndTime - $StartTime;
-    $UseTime >= 2 && Log::ErrorWrite('admin', '', $_SERVER['REQUEST_URI']."\t共耗时 $UseTime 秒\n", 'timer.txt');
+    $UseTime >= 2 && Log::ErrorWrite('weixin', '', $_SERVER['REQUEST_URI']."\t共耗时 $UseTime 秒\n", 'timer.txt');
 } 
 catch(Exception $e)
 {
@@ -334,7 +334,7 @@ catch(Exception $e)
         echo "错误代码：" . $e->getCode() . "<br>错误信息：" . $e->getMessage() . '<br>文件：' . $e->getFile() . '<br>行号：' . $e->getLine() . '<br>路由信息：' .$e->getTraceAsString();
         exit();
     }
-    Log::ErrorWrite('admin', '', $_SERVER['REQUEST_URI']."\t"."错误代码：".$e->getCode()."\r 错误信息：".$e->getMessage().'\r 文件：'.$e->getFile().'\r 行号：'.$e->getLine().'\r 路由信息：'.$e->getTraceAsString(), 'debug.txt');
+    Log::ErrorWrite('weixin', '', $_SERVER['REQUEST_URI']."\t"."错误代码：".$e->getCode()."\r 错误信息：".$e->getMessage().'\r 文件：'.$e->getFile().'\r 行号：'.$e->getLine().'\r 路由信息：'.$e->getTraceAsString(), 'debug.txt');
     header("http/1.1 502 Bad Gateway"); die;
     //Util::ShowMessage("", "/error/nofound");
 }

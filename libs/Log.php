@@ -50,9 +50,9 @@ class Log {
      */
     public static function ErrorWrite($project, $page, $message, $filename = '') {
         //$WRITE_LOG为日志记录开关，config.inc.php中定义，默认为true
-        if (!$GLOBALS['_WRITE_ERROR_LOG']) {
-            return;
-        }
+//        if (!$GLOBALS['_WRITE_ERROR_LOG']) {
+//            return;
+//        }
 
         $filename = self::LogPath($project) . self::LogFile($filename, 'error');
 
@@ -66,7 +66,7 @@ class Log {
         }
 
         $filename = self::LogPath($project) . self::LogFile($filename, 'success');
-
+        
         self::LogWrite($page, $message, $filename);
     }
 
@@ -77,26 +77,11 @@ class Log {
      * @return string $file_path 文件夹路径
      */
     private static function LogPath($project) {
-
+        
         $file_path = LOG_PATH;
         switch ($project) {
-            case 'soap':
-                $file_path .= 'soap/';
-                break;
-            case 'vip':
-                $file_path .= 'vip/';
-                break;
-            case 'www':
-                $file_path .= 'www/';
-                break;
-            case 'admin':
-                $file_path .= 'admin/';
-                break;
-            case 'crm':
-                $file_path .= 'crm/';
-                break;
-            case 'cms':
-                $file_path .= 'cms/';
+            case 'weixin':
+                $file_path .= 'weixin/';
                 break;
             case 'crondtab':
                 $file_path .= 'crondtab/';

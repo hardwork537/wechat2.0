@@ -10,7 +10,6 @@ $router->add('/', array(
 $router->add("/roomtype.htm&?(.*)", array(
     "controller"    => 'room',
     'action'        => 'index',
-    'name'          => 'tony'
 ));
 
 

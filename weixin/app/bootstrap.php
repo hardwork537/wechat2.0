@@ -112,7 +112,7 @@ foreach($sysDB as $k => $v)
                 //else {
                 // $flash->notice($event->getType());
                 //}
-            });
+            });           
             $connection = new \Phalcon\Db\Adapter\Pdo\Mysql(
                 array(
                     "host"     => $q['host'],
@@ -276,7 +276,7 @@ $di->set('modelsMetadata', function ()
     //return new \Phalcon\Mvc\Model\Metadata\Memory();
     return new \Phalcon\Mvc\Model\MetaData\Files(array(
         "lifetime"    => 86400,
-        'metaDataDir' => '/tmp/phalcon/'
+        'metaDataDir' => 'E:/phalcon/'
     ));
 });
 
